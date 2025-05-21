@@ -1,5 +1,6 @@
 import { redirect } from 'react-router-dom';
 
+// Calculate time left before token expires (ms)
 export function getTokenDuration() {
     const storedExpirationDate = localStorage.getItem('expiration');
     const expirationDate = new Date(storedExpirationDate);
@@ -8,6 +9,7 @@ export function getTokenDuration() {
     return duration;
 }
 
+// Get current auth token
 export function getAuthToken() {
   const token = localStorage.getItem('token');
 
@@ -23,11 +25,13 @@ export function getAuthToken() {
   return token;
 }
 
+// Makes token available to route components
 export function tokenLoader() {
   const token = getAuthToken();
   return token;
 }
 
+// Redirects to login if not authenticated
 export function checkAuthLoader() {
   const token = getAuthToken();
 
